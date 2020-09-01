@@ -1,0 +1,24 @@
+@model ExemploEnvioEmail.Models.NewUserMailableViewModel
+
+@{
+   ViewBag.Heading = "Bem vindo: " + Model.Name;
+   ViewBag.Preview = "Obrigado por se registrar no nosso sistema";
+}
+
+<p>
+    Bem vindo @Model.Name!
+</p>
+<p>
+    Estamos felizes que agora você faz parte da nossa comunidade. Por favor, clique no botão abaixo para confirmar seu registro.
+    @await Component.InvokeAsync("EmailLinkButton", new  { text = "Confirmar", url = Model.CallbackUrl })
+</p>
+<p>
+    Ou copie e cole no navegador o link abaixo:
+</p>
+<p>
+    <a href="@Html.DisplayFor(m => m.CallbackUrl)">@Html.DisplayFor(m => m.CallbackUrl)</a>
+</p>
+@section links
+{
+    <a href="https://www.treinaweb.com.br">Treinaweb</a> | <a href="https://www.treinaweb.com.br/blog">Treinaweb blog</a>
+}
